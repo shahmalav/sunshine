@@ -1,19 +1,23 @@
 package com.shahmalav.androidprojects.sunshine;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ShareCompat;
 import android.support.v4.util.TimeUtils;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,6 +64,18 @@ public class ForecastFragment extends Fragment {
         adapter = new ArrayAdapter(getActivity(),R.layout.list_item_forecast,R.id.list_item_forecast_textview,mockList);
         ListView listView = (ListView) rootView.findViewById(R.id.list_view_forecast);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String forecast = adapter.getItem(position).toString();
+        //        Toast.makeText(getActivity(),forecast, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra(Intent.EXTRA_TEXT, forecast );
+                startActivity(intent);
+
+            }
+        });
 
         return rootView;
     }
