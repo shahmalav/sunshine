@@ -19,33 +19,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    public static class PlaceholderFragment extends Fragment{
-
-        public PlaceholderFragment(){
-
-        }
-
-        @Nullable
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-            View rootView =inflater.inflate(R.layout.fragment_main, container, false);
-
-            List<String> mockList = new ArrayList<String>();
-            mockList.add("Today - Sunny - 88/63");
-            mockList.add("Tomorrow - Foggy - 70/46");
-            mockList.add("Weds - Cloudy - 72/63");
-            mockList.add("Thurs - Rainy - 64/51");
-            mockList.add("Fri - Foggy - 70/46");
-            mockList.add("Sat - Sunny - 76/68");
-
-            ArrayAdapter adapter = new ArrayAdapter(getActivity(),R.layout.list_item_forecast,R.id.list_item_forecast_textview,mockList);
-            ListView listView = (ListView) rootView.findViewById(R.id.list_view_forecast);
-            listView.setAdapter(adapter);
-
-            return super.onCreateView(inflater, container, savedInstanceState);
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().add(R.id.container,new ForecastFragment()).commit();
         }
     }
+
+
 }
