@@ -12,9 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * Created by shahm on 7/1/2016.
- */
 public class DetailFragment extends Fragment{
 
     public DetailFragment(){}
